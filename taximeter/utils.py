@@ -1,11 +1,13 @@
-def get_user_input(prompt: str, valid_inputs: list) -> str:
+def get_user_input(prompt, valid_inputs):
+    """
+    Pide una entrada al usuario y la valida.
+    :param prompt: Mensaje para pedir la entrada.
+    :param valid_inputs: Lista de opciones válidas para la entrada del usuario.
+    :return: La entrada validada.
+    """
     while True:
-        try:
-            user_input = input(prompt).strip().lower()
-            if user_input not in valid_inputs:
-                raise ValueError("Entrada no válida.")
+        user_input = input(prompt).strip().lower()
+        if user_input in valid_inputs:
             return user_input
-        except ValueError as e:
-            print(f"❌ {e} Por favor, elige una opción válida: {', '.join(valid_inputs)}")
-        except Exception as e:
-            print(f"Error inesperado: {e}")
+        else:
+            print(f"Entrada inválida. Opciones válidas: {', '.join(valid_inputs)}")

@@ -6,18 +6,16 @@ class Taximeter:
         self.start_time = None
         self.total_cost = 0.0
         self.last_update_time = None
-        self.acc_moving_time = 0.0  # Tiempo acumulado en movimiento
-        self.acc_stopped_time = 0.0  # Tiempo acumulado en parado
+        self.acc_moving_time = 0.0 
+        self.acc_stopped_time = 0.0 
     
     def start_trip(self):
-        print("🚀 Iniciando trayecto...")
         self.start_time = time.time()
         self.last_update_time = self.start_time
         self.total_cost = 0.0
         self.acc_moving_time = 0.0
         self.acc_stopped_time = 0.0
-        
-        print("⛔ El taxi comienza parado.")
+        print("🚖 ¡Taxímetro en marcha!")
     
     def update_status(self, moving: bool = None):
         current_time = time.time()
@@ -37,10 +35,23 @@ class Taximeter:
         if moving is not None:
             self.is_moving = moving
 
-        print(f"⏱️ Tiempo acumulado en movimiento: {self.acc_moving_time:.2f} segundos")
+        print(f"\n⏱️ Tiempo acumulado en movimiento: {self.acc_moving_time:.2f} segundos")
         print(f"⏱️ Tiempo acumulado en parado: {self.acc_stopped_time:.2f} segundos")
     
     def end_trip(self):
         # Asegura que el tiempo y coste se actualicen antes de finalizar
         self.update_status()
+        print(f"\nTrayecto finalizado.")
         print(f"💰 Total a pagar: {self.total_cost:.2f}€")
+    
+    def reset_trip(self):
+        """
+        Resetea el taxímetro a sus valores iniciales para iniciar un nuevo trayecto.
+        """
+        self.is_moving = False
+        self.start_time = None
+        self.total_cost = 0.0
+        self.last_update_time = None
+        self.acc_moving_time = 0.0 
+        self.acc_stopped_time = 0.0
+        
