@@ -1,4 +1,5 @@
 from taximeter import Taximeter 
+from taximeter.utils import get_user_input
 
 def show_welcome_message():
     print(
@@ -19,17 +20,14 @@ def main():
     while True:
         show_welcome_message()
 
-        action = input("Quieres iniciar un trayecto? (s/n): ").lower()
-        
-        while action not in ('s', 'n'):
-            print ("❌ Opción no válida. Por favor, elige 's' para sí o 'n' para no.")
-            action = input("¿Quieres iniciar un trayecto? (s/n): ").lower()
+        action = get_user_input("¿Quieres iniciar un trayecto? (s/n): ", ['s', 'n'])
         
         if action == 's':
             taximeter.start_trip()
 
             while True:
-                status = (input("Indique si el taxi está en movimiento (m), parado(p) o si desea finalizar el trayecto (f): "))
+
+                status = get_user_input("Indique si el taxi está en movimiento (m), parado (p) o si desea finalizar el trayecto (f): ", ['m', 'p', 'f'])
                 
                 if status == 'm':
                     taximeter.update_status(moving=True)
@@ -41,11 +39,9 @@ def main():
                 elif status == 'f':
                     taximeter.end_trip()
                     break
-                else:
-                    print("❌ Opción no válida. Intenta nuevamente.")
         
         else:
-            print("👋 ¡Gracias por usar el Taxímetro Digital! Hasta luego.")
+            print("👋 ¡Gracias por usar el Taxímetro Digital! Hasta la próxima.")
             break
 
 if __name__ == "__main__":
