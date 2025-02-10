@@ -25,6 +25,6 @@ class Taximeter:
         self.is_moving = moving
         self.last_update_time = current_time
     
-    def stop_trip(self):
+    def end_trip(self):
         self.update_status(self.is_moving)
         print(f"🏁 Trayecto finalizado. Total a pagar: {self.total_cost:.2f}€")

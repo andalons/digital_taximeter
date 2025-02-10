@@ -39,7 +39,7 @@ def main():
                     taximeter.update_status(moving=False)
                     print("⛔ Taxi parado.")
                 elif status == 'f':
-                    taximeter.stop_trip()
+                    taximeter.end_trip()
                     break
                 else:
                     print("❌ Opción no válida. Intenta nuevamente.")
