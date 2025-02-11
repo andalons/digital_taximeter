@@ -1,5 +1,6 @@
 from taximeter import Taximeter 
 from taximeter.utils import get_user_input
+from taximeter.logger import logger
 
 def show_welcome_message():
     print(
@@ -33,6 +34,8 @@ def main():
         if user_action == 's':
             taximeter.reset_trip()  
             print("\n🚀 Iniciando trayecto...")
+            logger.info("User started a new trip.")
+
             taximeter.start_trip()
             while True:
                 # Actualización del estado del taxi
@@ -48,9 +51,13 @@ def main():
                     print("\n⛔ Taxi parado.")
                 elif status == 'f':
                     taximeter.end_trip()
+                    logger.info("User ended the trip.")
+
                     break
         elif user_action == 'n':
-            print("👋 ¡Gracias por usar el Taxímetro Digital! Hasta la próxima.")
+            print("\n👋 ¡Gracias por usar el Taxímetro Digital! Hasta la próxima.")
+            logger.info("User exited the program.")
+
             break
 
 if __name__ == "__main__":
