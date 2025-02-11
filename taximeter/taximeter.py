@@ -22,6 +22,11 @@ class Taximeter:
         print("🚖 ¡Taxímetro en marcha!")
     
     def update_status(self, moving: bool = None):
+
+        if self.start_time is None or self.last_update_time is None:
+            logger.warning("No se puede actualizar el estado antes de iniciar el viaje.")
+            return
+        
         current_time = time.time()
         elapsed_time = current_time - self.last_update_time
 
