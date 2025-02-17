@@ -38,7 +38,6 @@ def main():
 
             taximeter.start_trip()
             while True:
-                # Actualización del estado del taxi
                 status = get_user_input(
                     "\nEn cada momento, indique si el taxi está en movimiento (m), parado (p) o si desea finalizar el trayecto (f): ",
                     ['m', 'p', 'f']
